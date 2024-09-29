@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "heic-convert-fd9a7",
     "public": "dist",
     "ignore": [],
     "rewrites": [
