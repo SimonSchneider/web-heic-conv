@@ -18,34 +18,21 @@ function newFileListItem(file) {
     const name = document.createElement('span');
     name.textContent = file.name;
     item.appendChild(name);
+    const a = document.createElement('a');
+    a.textContent = 'Download';
+    a.setAttribute("class", "disabled")
+    item.appendChild(a);
     const reader = new FileReader();
     reader.onload = async () => {
-        try {
-            const outputBuffer = await convertHEIC(reader.result);
-            const downloadButton = document.createElement('button');
-            downloadButton.textContent = 'Download';
-            downloadButton.onclick = () => {
-                const blob = new Blob([outputBuffer], {type: 'image/jpeg'});
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = file.name.replace(/\.heic$|.HEIC$/, '.jpg');
-                a.click();
-            };
-            if (autoDownloadElement.checked) {
-                downloadButton.click();
-            }
-            item.appendChild(downloadButton);
-        } catch (e) {
-            console.error(e);
+        const outputBuffer = await convertHEIC(reader.result);
+        const blob = new Blob([outputBuffer], {type: 'image/jpeg'});
+        a.href = URL.createObjectURL(blob);
+        a.setAttribute("class", "")
+        a.download = file.name.replace(/\.heic$|.HEIC$/, '.jpg');
+        if (autoDownloadElement.checked) {
+            a.click();
         }
     };
-    reader.onprogress = (e) => {
-        if (e.lengthComputable) {
-            const progress = e.loaded / e.total * 100;
-            name.textContent = `${file.name} (${progress.toFixed(2)}%)`;
-        }
-    }
     reader.readAsArrayBuffer(file);
     return item;
 }

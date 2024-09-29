@@ -103,7 +103,6 @@ body {
 }
 
 .fileList li span {
-    font-weight: bold;
     padding: 10px 15px;
 }
 
@@ -118,4 +117,10 @@ body {
 
 .fileList li a:hover {
     background-color: var(--primary-color-hover);
+}
+
+a.disabled {
+    background-color: gray;
+    pointer-events: none;
+    cursor: default;
 }
