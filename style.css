@@ -1,138 +1,137 @@
 body {
-    margin: 15px;
-    padding: 15px;
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  margin: 15px;
+  padding: 15px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .root {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 800px;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  gap: 20px;
 }
 
 .description {
-    text-align: center;
-    line-height: 1.6rem;
+  text-align: center;
+  line-height: 1.6rem;
 }
 
 :root {
-    --primary-color: #007bff;
-    --primary-color-hover: #0056b3;
-    --secondary-color: #1534b3;
-    --secondary-color-hover: #0d1f7a;
-    --muted-color: aliceblue;
-    --primary-color-text: #f0f0f0;
+  --primary-color: #007bff;
+  --primary-color-hover: #0056b3;
+  --secondary-color: #1534b3;
+  --secondary-color-hover: #0d1f7a;
+  --muted-color: aliceblue;
+  --primary-color-text: #f0f0f0;
 }
 
 #drop_zone {
-    background: var(--muted-color);
-    width: 100%;
-    max-width: 800px;
-    min-height: 20vh;
-    padding: 20px 0 20px 0;
-    border: 2px dashed var(--primary-color);
-    border-radius: 3px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
+  background: var(--muted-color);
+  width: 100%;
+  max-width: 800px;
+  min-height: 20vh;
+  padding: 20px 0 20px 0;
+  border: 2px dashed var(--primary-color);
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
 }
 
 #drop_zone.dragover {
-    background-color: var(--primary-color);
+  background-color: var(--primary-color);
 }
 
 #drop_zone label {
-    cursor: pointer;
-    padding: 10px 20px;
-    background-color: var(--primary-color);
-    color: var(--primary-color-text);
-    border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: var(--primary-color-text);
+  border-radius: 5px;
 }
 
 #drop_zone label:hover {
-    background-color: var(--primary-color-hover);
+  background-color: var(--primary-color-hover);
 }
 
-#drop_zone input[type="file"] {
-    display: none;
+#drop_zone input[type='file'] {
+  display: none;
 }
 
 .controls {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: fit-content;
 }
 
 .controls div {
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
-    width: 100%;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .fileList {
-    list-style: none;
+  list-style: none;
 }
 
 .fileList li {
-    background-color: var(--muted-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--secondary-color);
-    padding: 0;
-    margin: 0;
-    min-width: 300px;
+  background-color: var(--muted-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--secondary-color);
+  padding: 0;
+  margin: 0;
+  min-width: 300px;
 }
 
 .fileList li:first-child {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-top: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-top: none;
 }
 
 .fileList li:first-child a {
-    border-top-right-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .fileList li:last-child {
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom: none;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom: none;
 }
 
 .fileList li:last-child a {
-    border-bottom-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .fileList li span {
-    padding: 10px 15px;
+  padding: 10px 15px;
 }
 
-
 .fileList li a {
-    padding: 10px 10px;
-    background-color: var(--primary-color);
-    color: var(--primary-color-text);
-    border: none;
-    cursor: pointer;
+  padding: 10px 10px;
+  background-color: var(--primary-color);
+  color: var(--primary-color-text);
+  border: none;
+  cursor: pointer;
 }
 
 .fileList li a:hover {
-    background-color: var(--primary-color-hover);
+  background-color: var(--primary-color-hover);
 }
 
 a.disabled {
-    background-color: gray;
-    pointer-events: none;
-    cursor: default;
+  background-color: gray;
+  pointer-events: none;
+  cursor: default;
 }
