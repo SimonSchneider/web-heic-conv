@@ -1,4 +1,4 @@
-import heicConvert from 'heic-convert/browser.js';
+const heicConvert = import('heic-convert/browser.js');
 import { fileInputSource, getFileList, getControls } from './common.js';
 
 const fileList = getFileList('fileList');
@@ -6,11 +6,13 @@ const controls = getControls('controls');
 
 function convertHEIC(arrayBuffer, format) {
   const inputBuffer = new Uint8Array(arrayBuffer);
-  return heicConvert({
-    buffer: inputBuffer,
-    format: format.toUpperCase(),
-    quality: controls.quality,
-  });
+  return heicConvert.then((conv) =>
+    conv({
+      buffer: inputBuffer,
+      format: format.toUpperCase(),
+      quality: controls.quality,
+    })
+  );
 }
 
 function handleFile(file) {
