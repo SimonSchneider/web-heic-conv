@@ -16,14 +16,14 @@
         <h1>HEIC converter</h1>
         <p>Convert HEIC files to JPEG in the browser. Fully local static web app, your pictures stay on your computer,
             fully <a href="https://github.com/SimonSchneider/web-heic-conv" target="_blank">open
-            source</a> under the MIT licence, no cookies no nothing. Just converting images.</p>
+                source</a> under the MIT licence, no cookies no nothing. Just converting images.</p>
     </div>
 
     <div id="drop_zone">
         <input type="file" id="fileInput" multiple accept="image/heic" style="display:none"/>
         <label for="fileInput" id="fileSelect">Select HEIC files</label>
     </div>
-    <div class="controls">
+    <div id="controls" class="controls">
         <div>
             <label for="quality">Quality</label>
             <input type="range" id="quality" min="0" max="1" step="0.01" value="0.75">
@@ -32,9 +32,17 @@
             <label for="autoDownload">Auto download</label>
             <input type="checkbox" id="autoDownload"/>
         </div>
+        <div>
+            <label for="format">Format</label>
+            <select id="format">
+                <option value="JPEG" selected>JPEG</option>
+                <option value="PNG">png</option>
+            </select>
+        </div>
     </div>
     <ul id="fileList" class="fileList">
     </ul>
+    <button id="testButton" class="convert">Convert</button>
 </div>
 </body>
 </html>

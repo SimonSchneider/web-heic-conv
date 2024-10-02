@@ -1,37 +1,30 @@
 import heicConvert from 'heic-convert/browser.js';
+import {downloadElem, downloadReady, fileInputSource, getControls} from "./common.js";
 
-const qualityElement = document.getElementById('quality');
+const controls = getControls('controls');
 
-function convertHEIC(arrayBuffer) {
+function convertHEIC(arrayBuffer, format) {
     const inputBuffer = new Uint8Array(arrayBuffer);
     return heicConvert({
         buffer: inputBuffer,
-        format: 'JPEG',
-        quality: qualityElement.value,
+        format,
+        quality: controls.quality,
     });
 }
-
-const autoDownloadElement = document.getElementById('autoDownload');
 
 function newFileListItem(file) {
     const item = document.createElement('li');
     const name = document.createElement('span');
     name.textContent = file.name;
     item.appendChild(name);
-    const a = document.createElement('a');
-    a.textContent = 'Download';
-    a.setAttribute("class", "disabled")
-    item.appendChild(a);
+    const a = item.appendChild(downloadElem());
     const reader = new FileReader();
     reader.onload = async () => {
-        const outputBuffer = await convertHEIC(reader.result);
-        const blob = new Blob([outputBuffer], {type: 'image/jpeg'});
-        a.href = URL.createObjectURL(blob);
-        a.setAttribute("class", "")
-        a.download = file.name.replace(/\.heic$|.HEIC$/, '.jpg');
-        if (autoDownloadElement.checked) {
-            a.click();
-        }
+        const format = controls.format;
+        const lcFormat = format.toLowerCase();
+        const outputBuffer = await convertHEIC(reader.result, format);
+        const blob = new Blob([outputBuffer], {type: `image/${lcFormat}`});
+        downloadReady(a, blob, file.name, lcFormat, controls.autoDownload);
     };
     reader.readAsArrayBuffer(file);
     return item;
@@ -39,14 +32,6 @@ function newFileListItem(file) {
 
 const list = document.getElementById('fileList');
 
-document.getElementById('fileInput').addEventListener('change', async (e) => {
-    const files = e.target.files;
-    if (!files.length) {
-        return;
-    }
-    for (const file of files) {
-        list.appendChild(newFileListItem(file));
-    }
+fileInputSource('fileInput', (file) => {
+    list.appendChild(newFileListItem(file));
 });
-
-console.log('Hello, world!');
