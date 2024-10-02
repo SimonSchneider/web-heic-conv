@@ -46,3 +46,21 @@ export function downloadReady(elem, blob, name, newExt, autoDownload) {
         elem.click();
     }
 }
+
+export function getFileList(listId) {
+    const fileListElem = document.getElementById(listId);
+    return {
+        add(file) {
+            const fileElem = document.createElement('li');
+            const nameElem = fileElem.appendChild(document.createElement('span'));
+            nameElem.textContent = file.name;
+            const aElem = fileElem.appendChild(downloadElem());
+            fileListElem.appendChild(fileElem);
+            return {
+                downloadReady: (blob, newExt, autoDownload) => {
+                    downloadReady(aElem, blob, file.name, newExt, autoDownload);
+                }
+            }
+        }
+    }
+}
