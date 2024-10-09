@@ -7,7 +7,7 @@ const controls = getControls('controls');
 function convertHEIC(arrayBuffer, format) {
   const inputBuffer = new Uint8Array(arrayBuffer);
   return heicConvert.then((conv) =>
-    conv({
+    conv.default({
       buffer: inputBuffer,
       format: format.toUpperCase(),
       quality: controls.quality,
